@@ -31,7 +31,6 @@ begin
     -- Clock generation
     TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';
 
-    --  EDIT: Replace YOURCLOCKSIGNAL below by the name of your clock as I haven't guessed it
     C <= TbClock;
 
     stimuli : process
@@ -57,7 +56,6 @@ begin
 
 end tb;
 
--- Configuration block below is required by some simulators. Usually no need to edit.
 
 configuration cfg_tb_counter of tb_counter is
     for tb
