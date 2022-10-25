@@ -17,7 +17,7 @@ architecture tb of tb_counter is
     signal CLR : std_logic;
     signal Q   : std_logic_vector (3 downto 0);
 
-    constant TbPeriod : time := 1000 ns; -- EDIT Put right period here
+    constant TbPeriod : time := 1000 ns; 
     signal TbClock : std_logic := '0';
     signal TbSimEnded : std_logic := '0';
 
@@ -28,28 +28,22 @@ begin
               CLR => CLR,
               Q   => Q);
 
-    -- Clock generation
     TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';
 
     C <= TbClock;
 
     stimuli : process
     begin
-        -- EDIT Adapt initialization as needed
-        --C <= '0';
 
-        -- Reset generation
-        -- EDIT: Check that CLR is really your reset signal
         CLR <= '1';
         wait for 100 ns;
         CLR <= '0';
         wait for 100 ns;
 
-        -- EDIT Add stimuli here
         wait for 100 * TbPeriod;
-	--C <= not C after 10 ns;
+
 	CLR <= '1' after 2000 ns, '0' after 3000 ns;
-        -- Stop the clock and hence terminate the simulation
+
         TbSimEnded <= '1';
         wait;
     end process;
