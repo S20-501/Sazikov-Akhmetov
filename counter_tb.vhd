@@ -42,7 +42,7 @@ begin
 
         wait for 100 * TbPeriod;
 
-	CLR <= '1' after 2000 ns, '0' after 3000 ns;
+	CLR <= '1' after 10 ns, '0' after 20 ns;
 
         TbSimEnded <= '1';
         wait;
