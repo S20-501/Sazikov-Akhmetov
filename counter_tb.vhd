@@ -35,12 +35,12 @@ begin
     TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';
 
     --  EDIT: Replace YOURCLOCKSIGNAL below by the name of your clock as I haven't guessed it
-    --  YOURCLOCKSIGNAL <= TbClock;
+    C <= TbClock;
 
     stimuli : process
     begin
         -- EDIT Adapt initialization as needed
-        C <= '0';
+        --C <= '0';
 
         -- Reset generation
         -- EDIT: Check that CLR is really your reset signal
@@ -51,7 +51,8 @@ begin
 
         -- EDIT Add stimuli here
         wait for 100 * TbPeriod;
-
+	--C <= not C after 10 ns;
+	CLR <= '1' after 2000 ns, '0' after 3000 ns;
         -- Stop the clock and hence terminate the simulation
         TbSimEnded <= '1';
         wait;
